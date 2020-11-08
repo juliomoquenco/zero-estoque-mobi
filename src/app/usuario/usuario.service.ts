@@ -24,6 +24,7 @@ export class UsuarioService {
       this.http.get(this.currentServer.getServer()+"/getUsuarios",{},{})
       .then((retorno)=>
       {
+        console.log('api usuarios recebido');
         resolve(JSON.parse(retorno.data));
       })
       .catch((err)=>
@@ -121,6 +122,7 @@ export class UsuarioService {
         db.executeSql(sql, [])
         .then((resultado:any)=>
         {
+          console.log('tabela usuarios limpa');
           resolve(true);
         })
         .catch((err)=>

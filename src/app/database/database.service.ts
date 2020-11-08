@@ -43,12 +43,13 @@ export class DatabaseService
           cnpj VARCHAR(20),
           sexo VARCHAR(12),
           endereco VARCHAR(255),
-          regra VARCHAR(12)
+          regra VARCHAR(12) 
         )
         `;
         db.executeSql(sql,[])
         .then((resultado)=>
         {
+          console.log('tabela usuarios criada');
           resolve(true);
         })
         .catch((err)=>
