@@ -110,6 +110,31 @@ export class UsuarioService {
     });
   }
 
+  getUserByLogin(email: string, senha: string)
+  {
+    return new Promise((resolve,reject)=>
+    {
+      this.databaseDao.getDB().then((db: SQLiteObject)=>
+      {
+        let sql = `SELECT * FROM usuarios where email = '${email}' and senha = '${senha}'`;
+        db.executeSql(sql, [])
+        .then((resultado:any)=>
+        {
+          let retorno = [];
+          for(var i = 0; i<=(resultado.rows.length-1); i++)
+          {
+            retorno.push(resultado.rows.item(i));
+          }
+          resolve(retorno);
+        })
+        .catch((err)=>
+        {
+          reject(err);
+        });
+      });
+    });
+  }
+
   clearAll()
   {
     return new Promise((resolve,reject)=>

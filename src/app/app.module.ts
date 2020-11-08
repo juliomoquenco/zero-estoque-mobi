@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HTTP } from '@ionic-native/http/ngx';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule(
   {
   declarations: [AppComponent],
@@ -20,6 +22,7 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
   [
     BrowserModule, 
     IonicModule.forRoot(), 
+    IonicStorageModule.forRoot(),
     AppRoutingModule
   ],
   providers: 

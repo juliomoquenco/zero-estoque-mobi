@@ -1,0 +1,280 @@
+//
+// Base styles
+//
+
+.product {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; // See https://github.com/twbs/bootstrap/pull/22740#issuecomment-305868106
+    height: $product-height;
+    word-wrap: break-word;
+    background-color: $product-bg;
+    background-clip: border-box;
+    border: $product-border-width solid $product-border-color;
+    @include border-radius($product-border-radius);
+  
+    > hr {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  
+    > .list-group:first-child {
+      .list-group-item:first-child {
+        @include border-top-radius($product-border-radius);
+      }
+    }
+  
+    > .list-group:last-child {
+      .list-group-item:last-child {
+        @include border-bottom-radius($product-border-radius);
+      }
+    }
+  }
+  
+  .product-body {
+    // Enable `flex-grow: 1` for decks and groups so that product blocks take up
+    // as much space as possible, ensuring footers are aligned to the bottom.
+    flex: 1 1 auto;
+    // Workaround for the image size bug in IE
+    // See: https://github.com/twbs/bootstrap/pull/28855
+    min-height: 1px;
+    padding: $product-spacer-x;
+    color: $product-color;
+  
+  }
+  
+  .product-title {
+    margin-bottom: $product-spacer-y;
+  }
+  
+  .product-subtitle {
+    margin-top: -$product-spacer-y / 2;
+    margin-bottom: 0;
+  }
+  
+  .product-text:last-child {
+    margin-bottom: 0;
+  }
+  
+  .product-link {
+    @include hover() {
+      text-decoration: none;
+    }
+  
+    + .product-link {
+      margin-left: $product-spacer-x;
+    }
+  }
+  
+  //
+  // Optional textual caps
+  //
+  
+  .product-header {
+    padding: $product-spacer-y $product-spacer-x;
+    margin-bottom: 0; // Removes the default margin-bottom of <hN>
+    color: $product-cap-color;
+    background-color: $product-cap-bg;
+    border-bottom: $product-border-width solid $product-border-color;
+   
+    &:first-child {
+      @include border-radius($product-inner-border-radius $product-inner-border-radius 0 0);
+    }
+  
+    + .list-group {
+      .list-group-item:first-child {
+        border-top: 0;
+      }
+    }
+  }
+  
+  .product-footer {
+    padding: $product-spacer-y $product-spacer-x;
+    background-color: $product-cap-bg;
+    border-top: $product-border-width solid $product-border-color;
+  
+    &:last-child {
+      @include border-radius(0 0 $product-inner-border-radius $product-inner-border-radius);
+    }
+  }
+  
+  
+  //
+  // Header navs
+  //
+  
+  .product-header-tabs {
+    margin-right: -$product-spacer-x / 2;
+    margin-bottom: -$product-spacer-y;
+    margin-left: -$product-spacer-x / 2;
+    border-bottom: 0;
+  }
+  
+  .product-header-pills {
+    margin-right: -$product-spacer-x / 2;
+    margin-left: -$product-spacer-x / 2;
+  }
+  
+  // product image
+  .product-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: $product-img-overlay-padding;
+  }
+  
+  .product-img,
+  .product-img-top,
+  .product-img-bottom {
+    flex-shrink: 0; // For IE: https://github.com/twbs/bootstrap/issues/29396
+    width: 100%; // Required because we use flexbox and this inherently applies align-self: stretch
+  }
+  
+  .product-img,
+  .product-img-top {
+    @include border-top-radius($product-inner-border-radius);
+  }
+  
+  .product-img,
+  .product-img-bottom {
+    @include border-bottom-radius($product-inner-border-radius);
+  }
+  
+  
+  // product deck
+  
+  .product-deck {
+    .product {
+      margin-bottom: $product-deck-margin;
+    }
+  
+    @include media-breakpoint-up(sm) {
+      display: flex;
+      flex-flow: row wrap;
+      margin-right: -$product-deck-margin;
+      margin-left: -$product-deck-margin;
+  
+      .product {
+        // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
+        flex: 1 0 0%;
+        margin-right: $product-deck-margin;
+        margin-bottom: 0; // Override the default
+        margin-left: $product-deck-margin;
+      }
+    }
+  }
+  
+  
+  //
+  // product groups
+  //
+  
+  .product-group {
+    // The child selector allows nested `.product` within `.product-group`
+    // to display properly.
+    > .product {
+      margin-bottom: $product-group-margin;
+    }
+  
+    @include media-breakpoint-up(sm) {
+      display: flex;
+      flex-flow: row wrap;
+      // The child selector allows nested `.product` within `.product-group`
+      // to display properly.
+      > .product {
+        // Flexbugs #4: https://github.com/philipwalton/flexbugs#flexbug-4
+        flex: 1 0 0%;
+        margin-bottom: 0;
+  
+        + .product {
+          margin-left: 0;
+          border-left: 0;
+        }
+  
+        // Handle rounded corners
+        @if $enable-rounded {
+          &:not(:last-child) {
+            @include border-right-radius(0);
+  
+            .product-img-top,
+            .product-header {
+              // stylelint-disable-next-line property-blacklist
+              border-top-right-radius: 0;
+            }
+            .product-img-bottom,
+            .product-footer {
+              // stylelint-disable-next-line property-blacklist
+              border-bottom-right-radius: 0;
+            }
+          }
+  
+          &:not(:first-child) {
+            @include border-left-radius(0);
+  
+            .product-img-top,
+            .product-header {
+              // stylelint-disable-next-line property-blacklist
+              border-top-left-radius: 0;
+            }
+            .product-img-bottom,
+            .product-footer {
+              // stylelint-disable-next-line property-blacklist
+              border-bottom-left-radius: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  
+  //
+  // Columns
+  //
+  
+  .product-columns {
+    .product {
+      margin-bottom: $product-columns-margin;
+    }
+  
+    @include media-breakpoint-up(sm) {
+      column-count: $product-columns-count;
+      column-gap: $product-columns-gap;
+      orphans: 1;
+      widows: 1;
+  
+      .product {
+        display: inline-block; // Don't let them vertically span multiple columns
+        width: 100%; // Don't let their width change
+      }
+    }
+  }
+  
+  
+  //
+  // Accordion
+  //
+  
+  .accordion {
+    > .product {
+      overflow: hidden;
+  
+      &:not(:last-of-type) {
+        border-bottom: 0;
+        @include border-bottom-radius(0);
+      }
+  
+      &:not(:first-of-type) {
+        @include border-top-radius(0);
+      }
+  
+      > .product-header {
+        @include border-radius(0);
+        margin-bottom: -$product-border-width;
+      }
+    }
+  }
+  

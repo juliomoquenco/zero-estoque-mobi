@@ -32,6 +32,10 @@ const routes: Routes = [
     path: 'produtos-favoritos',
     loadChildren: () => import('./produtos-favoritos/produtos-favoritos/produtos-favoritos.module').then( m => m.ProdutosFavoritosPageModule)
   },
+  {
+    path: 'form-oferta',
+    loadChildren: () => import('./form-oferta/form-oferta/form-oferta.module').then( m => m.FormOfertaPageModule)
+  },
 ];
 
 @NgModule({
