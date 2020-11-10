@@ -6,4 +6,34 @@
 
 <ion-content>
 
+  <div>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide *ngFor="let imagem of produto.imagens">
+        <img [src]="imagem.nome"/>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div>
+    {{ this.produto.descricao }}
+  </div>
+
+  <div>
+    Preço R$ {{ this.produto.preco.toFixed(2).toString().replace(".",",") }}
+  </div>
+
+  <hr />
+
+  <div>
+    Valor da Oferta
+  </div>
+
+  <div>
+    <input [(ngModel)]="valor_oferta" type="text"/>
+  </div>
+
+  <div>
+    <button (click)="mandarOferta()">Mandar Oferta</button>
+  </div>
+
 </ion-content>

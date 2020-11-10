@@ -14,6 +14,8 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule(
   {
   declarations: [AppComponent],
@@ -21,6 +23,7 @@ import { IonicStorageModule } from '@ionic/storage';
   imports: 
   [
     BrowserModule, 
+    HttpClientModule,
     IonicModule.forRoot(), 
     IonicStorageModule.forRoot(),
     AppRoutingModule

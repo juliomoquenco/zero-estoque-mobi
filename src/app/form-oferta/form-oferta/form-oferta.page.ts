@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute, Router } from "@angular/router";
+import { FormOfertaService } from '../form-oferta.service';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -10,12 +11,19 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class FormOfertaPage implements OnInit {
 
-  nome_produto:string = "";
-
+  nome_produto: string = "";
   produto: any;
 
-  constructor(
-    private router: Router
+  valor_oferta: string = "";
+
+  usuario_id: number = 0;
+  usuario: any;
+
+  constructor
+  (
+    private router: Router,
+    private formOfertaService: FormOfertaService,
+    private storage: Storage
   ) 
   {
     if (this.router.getCurrentNavigation().extras.queryParams) 
@@ -28,9 +36,29 @@ export class FormOfertaPage implements OnInit {
         this.nome_produto = this.produto.nome;
       }
     }
+
+    this.storage.get("usuario").then((valor:any)=>
+    {
+      this.usuario = valor;
+      this.usuario_id = valor.id;
+    });
   }
 
-  ngOnInit() {
+  mandarOferta()
+  {
+    this.formOfertaService.mandarOferta(
+    {
+      usuario_id: this.usuario_id,
+      produto_id: this.produto.id,
+      valor_oferta: this.valor_oferta
+    }).then((retorno)=>
+    {
+      console.log(retorno);
+    });
+  }
+
+  ngOnInit()
+  {
   }
 
 }
