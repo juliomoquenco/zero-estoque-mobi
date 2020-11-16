@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { ProdutosFavoritosService } from 'src/app/produtos-favoritos/produtos-favoritos.service';
 import { ProdutosCadastradosService } from '../produtos-cadastrados.service';
 
 @Component({
@@ -18,27 +20,93 @@ export class ProdutosCadastradosPage implements OnInit {
   (
     private storage: Storage,
     private router: Router,
-    private produtoDao: ProdutosCadastradosService
+    private produtoDao: ProdutosCadastradosService,
+    private favoritoDao: ProdutosFavoritosService,
+    private alertCtrl: AlertController
   ) 
   { 
+    this.loadingFavoritos();
+  }
+  loadingFavoritos()
+  {
     this.storage.get("usuario").then((valor:any)=>
     {
       this.usuario = valor;
-    });
 
-    this.produtoDao.getFromApi().then((produtos:any)=>
-    {
-      this.produtos = produtos;
-
-      this.produtos.forEach((produto) => 
+      this.produtoDao.getFromApi().then((produtos:any)=>
       {
-        produto.imagens.forEach((imagem)=>
+        this.produtos = produtos;
+
+        this.produtos.forEach((produto) => 
         {
-          imagem.nome = "http://erp.sonnitech.com.br/zeroestoque/images/"+imagem.nome;
+
+          this.favoritoDao.getVerifyFavorito(this.usuario.id_server, produto.id).then((retorno:any)=>
+          {
+            if(retorno.length>0)
+            {
+              console.log(retorno[0]);
+              produto.favorito_id = retorno[0].id;
+            }
+            else
+            {
+              produto.favorito_id = 0;
+            }
+          });
+
+          produto.imagens.forEach((imagem)=>
+          {
+            imagem.nome = "http://erp.sonnitech.com.br/zeroestoque/images/"+imagem.nome;
+          });
         });
       });
     });
+  }
 
+  defineFavorito(produto_id:number)
+  {
+    this.favoritoDao.insertProdutoApi(
+      this.usuario.id_server,
+      produto_id
+    ).then(()=>
+    {
+      this.mensagem("Aviso","Definido como Favorito!")
+      .then(()=>
+      {
+        this.loadingFavoritos();
+      });
+    });
+  }
+  removeFavorito(produto_id:number)
+  {
+    this.favoritoDao.removeProdutoApi(
+      this.usuario.id_server,
+      produto_id
+    )
+    .then(()=>
+    {
+      this.mensagem("Aviso","Removido como Favorito!")
+      .then(()=>
+      {
+        this.loadingFavoritos();
+      });
+    });
+  }
+
+  async mensagem(header: string, msg: string)
+  {
+    var alerta = await this.alertCtrl.create(
+      {
+        header: header,
+        message: msg
+      });
+
+    alerta.present();
+  }
+
+  logoff()
+  {
+    this.storage.clear();
+    this.router.navigate(['/home']);
   }
 
   openFormOferta(produto:any)

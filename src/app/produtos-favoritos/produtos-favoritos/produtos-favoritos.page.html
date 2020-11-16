@@ -1,35 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>produtos-favoritos</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Meus Produtos Favoritos</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div *ngFor="let produto of produtos" style="padding:5px;">
+    <div *ngFor="let produto of produtos" style="padding:5px;">
 
-    <div>
-      <ion-slides pager="true" [options]="slideOpts">
-        <ion-slide *ngFor="let imagem of produto.imagens">
-          <img [src]="imagem.nome"/>
-        </ion-slide>
-      </ion-slides>
+        <div>
+            <ion-slides pager="true" [options]="slideOpts">
+                <ion-slide *ngFor="let imagem of produto.imagens">
+                    <img [src]="imagem.nome" />
+                </ion-slide>
+            </ion-slides>
+        </div>
+
+        <div (click)="openFormOferta(produto)">
+            <div style="font-size: 14pt; font-weight: bold;">
+                {{ produto.nome.toUpperCase() }}
+            </div>
+
+            <p style="font-size: 10pt;">
+                {{ produto.descricao.substr(0,100)+"..." }}
+                <br/> Preço: <b>R$ {{ produto.preco.toFixed(2).toString().replace(".",",") }}</b>
+            </p>
+        </div>
+
+        <div>
+            <ion-button (click)="removeFavorito(produto.id)">Remover Favorito</ion-button>
+        </div>
+
+        <hr />
+
     </div>
-
-    <div (click)="openFormOferta(produto)">
-      <div style="font-size: 14pt; font-weight: bold;">
-        {{ produto.nome.toUpperCase() }}
-      </div>
-
-      <p style="font-size: 10pt;">
-        {{ produto.descricao.substr(0,100)+"..." }}
-        <br/>
-        Preço: <b>R$ {{ produto.preco.toFixed(2).toString().replace(".",",") }}</b>
-      </p>
-    </div>
-
-    <hr />
-
-  </div>
 
 </ion-content>

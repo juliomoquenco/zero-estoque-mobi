@@ -64,13 +64,20 @@ export class UsuarioService {
     });
   }
 
-  insertUsuarioApi(descricao: string)
+  insertUsuarioApi(modelo: any)
   {
     return new Promise((resolve,reject)=>
     {
       this.http.get(this.currentServer.getServer()+"/setUsuario",
       {
-        descricao: descricao
+        nome: modelo.nome,
+        endereco: modelo.endereco,
+        email: modelo.email,
+        senha: modelo.senha,
+        cpf: modelo.cpf,
+        cnpj: modelo.cnpj,
+        sexo: modelo.sexo,
+        regra: modelo.regra
       },{})
       .then((retorno:any)=>
       {

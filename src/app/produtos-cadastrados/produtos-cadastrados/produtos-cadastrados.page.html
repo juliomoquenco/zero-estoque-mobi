@@ -1,39 +1,50 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Produtos Cadastrados</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Produtos Cadastrados</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-button (click)="open('produtos-favoritos');">
-    Meus Favoritos
-  </ion-button>
+    <ion-button (click)="open('produtos-favoritos');">
+        Meus Favoritos
+    </ion-button>
 
-  <div *ngFor="let produto of produtos" style="padding:5px;">
+    <ion-button (click)="logoff()">
+        Deslogar
+    </ion-button>
 
-    <div>
-      <ion-slides pager="true" [options]="slideOpts">
-        <ion-slide *ngFor="let imagem of produto.imagens">
-          <img [src]="imagem.nome"/>
-        </ion-slide>
-      </ion-slides>
+    <div *ngFor="let produto of produtos" style="padding:5px;">
+
+        <div>
+            <ion-slides pager="true" [options]="slideOpts">
+                <ion-slide *ngFor="let imagem of produto.imagens">
+                    <img [src]="imagem.nome" />
+                </ion-slide>
+            </ion-slides>
+        </div>
+
+        <div (click)="openFormOferta(produto)">
+            <div style="font-size: 14pt; font-weight: bold;">
+                {{ produto.nome.toUpperCase() }}
+            </div>
+
+            <p style="font-size: 10pt;">
+                {{ produto.descricao.substr(0,100)+"..." }}
+                <br/> Preço: <b>R$ {{ produto.preco.toFixed(2).toString().replace(".",",") }}</b>
+            </p>
+        </div>
+
+        <div *ngIf="produto.favorito_id == 0">
+            <ion-button (click)="defineFavorito(produto.id)">Definir Favorito</ion-button>
+        </div>
+
+        <div *ngIf="produto.favorito_id > 0">
+            <ion-button (click)="removeFavorito(produto.id)">Remover Favorito</ion-button>
+        </div>
+
+        <hr />
+
     </div>
-
-    <div (click)="openFormOferta(produto)">
-      <div style="font-size: 14pt; font-weight: bold;">
-        {{ produto.nome.toUpperCase() }}
-      </div>
-
-      <p style="font-size: 10pt;">
-        {{ produto.descricao.substr(0,100)+"..." }}
-        <br/>
-        Preço: <b>R$ {{ produto.preco.toFixed(2).toString().replace(".",",") }}</b>
-      </p>
-    </div>
-
-    <hr />
-
-  </div>
 
 </ion-content>

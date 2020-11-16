@@ -1,14 +1,16 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Zer0 Estoque
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Zer0 Estoque
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <div id="container">
-    <ion-button (click)="open('login');">Realizar Login</ion-button>
-  </div>
+    <div id="container">
+        <ion-button (click)="open('login');">Entrar</ion-button>
+        <br />
+        <ion-button (click)="open('registrar');">Cadastrar</ion-button>
+    </div>
 </ion-content>

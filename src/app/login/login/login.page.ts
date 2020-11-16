@@ -4,6 +4,7 @@ import { UsuarioService } from 'src/app/usuario/usuario.service';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,18 @@ export class LoginPage implements OnInit {
     private storage: Storage,
     private router : Router,
     private alertCtrl: AlertController
-  ) { }
+  ) { 
+
+      this.storage.get("usuario").then((usuario:any)=>
+      {
+        console.log(usuario);
+        if(usuario)
+        {
+          this.router.navigate(["/produtos-cadastrados"]);
+        }
+      });
+
+    }
 
   ngOnInit() {
   }
@@ -36,12 +48,12 @@ export class LoginPage implements OnInit {
       }
       else
       {
-        this.messagem("Aviso","Não foi encontrado nenhum usuario!");
+        this.mensagem("Aviso","Não foi encontrado nenhum usuario!");
       }
     });
   }
 
-  async messagem(header: string, msg: string)
+  async mensagem(header: string, msg: string)
   {
     var alerta = await this.alertCtrl.create(
       {

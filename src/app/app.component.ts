@@ -26,48 +26,37 @@ export class AppComponent
     private databaseDao: DatabaseService
   ) 
   {
-    this.addPromises().then(()=>
-    {
-      this.initializeApp();
-    });
-  }
-
-  addPromises()
-  {
-    return new Promise((resolve,reject)=>
-    {
-      this.promises = [];
-    
-      this.promises.push
-        (
-          this.databaseDao.createTableUsuario().then((retorno: any)=>
-          {
-          })
-        );
-  
-        this.promises.push
-        (
-          this.usuarioDao.clearAll().then((resposta: any)=>
-          { 
-          })
-        );
-  
-        this.promises.push
-        (
-          this.usuarioDao.getFromApi().then((usuarios: any)=>
-          {
-            this.usuarios = usuarios;
-          })
-        );
-
-        resolve(true);
-    });
+    this.initializeApp();
   }
 
   initializeApp() 
   {
     this.platform.ready().then(() => 
     {
+      this.promises = [];
+    
+      this.promises.push
+      (
+        this.databaseDao.createTableUsuario().then((retorno: any)=>
+        {
+        })
+      );
+  
+      this.promises.push
+      (
+        this.usuarioDao.clearAll().then((resposta: any)=>
+        { 
+        })
+      );
+  
+      this.promises.push
+      (
+        this.usuarioDao.getFromApi().then((usuarios: any)=>
+        {
+          this.usuarios = usuarios;
+        })
+      );
+
       Promise.all(this.promises).then((execucao:any)=>
       {
         this.usuarioDao.insertUsuario(this.usuarios).then((resultado:any)=>

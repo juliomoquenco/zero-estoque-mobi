@@ -46,6 +46,7 @@ export class DatabaseService
           regra VARCHAR(12) 
         )
         `;
+
         db.executeSql(sql,[])
         .then((resultado)=>
         {

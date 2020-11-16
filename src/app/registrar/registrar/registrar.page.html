@@ -1,9 +1,59 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>registrar</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Realizar Cadastro</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <ion-item>
+        <label>Nome</label>
+    </ion-item>
+    <ion-item>
+        <ion-input [(ngModel)]="modelo.nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <label>Endereço</label>
+    </ion-item>
+    <ion-item>
+        <ion-input [(ngModel)]="modelo.endereco"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <label>Email</label>
+    </ion-item>
+    <ion-item>
+        <ion-input [(ngModel)]="modelo.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <label>Senha</label>
+    </ion-item>
+    <ion-item>
+        <ion-input [(ngModel)]="modelo.senha"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <label>Cpf</label>
+    </ion-item>
+    <ion-item>
+        <ion-input [(ngModel)]="modelo.cpf"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <label>Sexo</label>
+    </ion-item>
+    <ion-item>
+        <select [(ngModel)]="modelo.sexo">
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+        </select>
+    </ion-item>
+
+    <ion-item>
+        <ion-button (click)="salvar()">Salvar</ion-button>
+    </ion-item>
+
 
 </ion-content>
