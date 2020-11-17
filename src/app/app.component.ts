@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { DatabaseService } from './database/database.service';
 import { UsuarioService } from './usuario/usuario.service';
+import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -23,10 +25,22 @@ export class AppComponent
     private statusBar: StatusBar,
 
     private usuarioDao: UsuarioService,
-    private databaseDao: DatabaseService
+    private databaseDao: DatabaseService,
+    
+    private storage: Storage,
+    private router: Router
   ) 
   {
     this.initializeApp();
+  }
+  logoff()
+  {
+    this.storage.clear();
+    this.router.navigate(['/home']);
+  }
+  open(pagina:string)
+  {
+    this.router.navigate(["/"+pagina]);
   }
 
   initializeApp() 

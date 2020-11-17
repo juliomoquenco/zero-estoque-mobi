@@ -36,6 +36,10 @@ const routes: Routes = [
     path: 'form-oferta',
     loadChildren: () => import('./form-oferta/form-oferta/form-oferta.module').then( m => m.FormOfertaPageModule)
   },
+  {
+    path: 'editar-cadastro',
+    loadChildren: () => import('./editar-cadastro/editar-cadastro/editar-cadastro.module').then( m => m.EditarCadastroPageModule)
+  },
 ];
 
 @NgModule({

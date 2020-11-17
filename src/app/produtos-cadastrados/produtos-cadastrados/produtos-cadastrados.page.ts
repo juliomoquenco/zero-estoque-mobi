@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { ProdutosFavoritosService } from 'src/app/produtos-favoritos/produtos-favoritos.service';
 import { ProdutosCadastradosService } from '../produtos-cadastrados.service';
@@ -22,11 +22,13 @@ export class ProdutosCadastradosPage implements OnInit {
     private router: Router,
     private produtoDao: ProdutosCadastradosService,
     private favoritoDao: ProdutosFavoritosService,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private menu: MenuController
   ) 
   { 
     this.loadingFavoritos();
   }
+  
   loadingFavoritos()
   {
     this.storage.get("usuario").then((valor:any)=>
@@ -125,8 +127,8 @@ export class ProdutosCadastradosPage implements OnInit {
     this.router.navigate(["/"+pagina]);
   }
 
-  ngOnInit() 
-  {
+  ngOnInit() {
+
   }
 
 }

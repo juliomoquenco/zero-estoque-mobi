@@ -90,6 +90,25 @@ export class UsuarioService {
       });
     });
   }
+  editUsuarioApi(modelo: any)
+  {
+    return new Promise((resolve,reject)=>
+    {
+      this.http.get(this.currentServer.getServer()+
+      `/editUsuario?id=${modelo.id_server}&nome=${modelo.nome}&endereco=${modelo.endereco}&email=${modelo.email}&senha=${modelo.senha}&cpf=${modelo.cpf}&cnpj=${modelo.cnpj}&sexo=${modelo.sexo}&regra=${modelo.regra}`,
+      {
+      },{})
+      .then((retorno:any)=>
+      {
+        resolve(retorno);
+      })
+      .catch((err)=>
+      {
+        console.log(err);
+        reject(); 
+      });
+    });
+  }
 
 
   getAll()

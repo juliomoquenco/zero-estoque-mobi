@@ -1,18 +1,13 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>Produtos Cadastrados</ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Produtos Cadastrados</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-    <ion-button (click)="open('produtos-favoritos');">
-        Meus Favoritos
-    </ion-button>
-
-    <ion-button (click)="logoff()">
-        Deslogar
-    </ion-button>
+<ion-content>   
 
     <div *ngFor="let produto of produtos" style="padding:5px;">
 
