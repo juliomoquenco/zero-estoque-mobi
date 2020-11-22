@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="ion-header-background-color">
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -9,38 +9,43 @@
 
 <ion-content>
 
-  <div>Nome: </div>
-  <div>
-    <ion-input [(ngModel)]="modelo.nome"></ion-input>
-  </div>
+  <div id="main">
+    <div>Nome: </div>
+    <div>
+      <ion-input [(ngModel)]="modelo.nome"></ion-input>
+    </div>
 
-  <div>Endereço: </div>
-  <div>
-    <ion-input [(ngModel)]="modelo.endereco"></ion-input>
-  </div>
+    <div>Endereço: </div>
+    <div>
+      <ion-input [(ngModel)]="modelo.endereco"></ion-input>
+    </div>
 
-  <div>Email: </div>
-  <div>
-    <ion-input [(ngModel)]="modelo.email"></ion-input>
-  </div>
+    <div>Email: </div>
+    <div>
+      <ion-input [(ngModel)]="modelo.email"></ion-input>
+    </div>
 
-  <div>Senha: </div>
-  <div>
-    <ion-input [(ngModel)]="modelo.senha"></ion-input>
-  </div>
+    <div>Senha: </div>
+    <div>
+      <ion-input [(ngModel)]="modelo.senha" type="password"></ion-input>
+    </div>
 
-  <div>Cpf: </div>
-  <div>
-    <ion-input [(ngModel)]="modelo.cpf"></ion-input>
-  </div>
+    <div>Cpf: </div>
+    <div>
+      <ion-input [(ngModel)]="modelo.cpf"></ion-input>
+    </div>
 
-  <div>Sexo: </div>
-  <div>
-    <ion-input [(ngModel)]="modelo.sexo"></ion-input>
-  </div>
+    <div>Sexo: </div>
+    <div>
+      <select [(ngModel)]="modelo.sexo">
+        <option value="Masculino">Masculino</option>
+        <option value="Feminino">Feminino</option>
+      </select>
+    </div>
 
-  <div>
-    <ion-button (click)="salvar()">Salvar</ion-button>
+    <div>
+      <ion-button color="success" (click)="salvar()">Salvar</ion-button>
+    </div>
   </div>
 
 </ion-content>

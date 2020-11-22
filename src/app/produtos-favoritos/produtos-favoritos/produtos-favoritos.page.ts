@@ -58,6 +58,7 @@ export class ProdutosFavoritosPage implements OnInit {
       this.mensagem("Aviso","Removido como Favorito!")
       .then(()=>
       {
+        this.produtos = [];
         this.loadingFavoritos();
       });
     });

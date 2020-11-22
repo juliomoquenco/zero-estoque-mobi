@@ -1,0 +1,20 @@
+ion-content {
+    --background: #fff url('../../../assets/img/fundo.jpg') no-repeat center center / cover !important;
+    --filter: blur(1px);
+}
+#main{
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    width: 90%;
+    margin-left: 5%;
+    border-radius:10px;
+}
+ion-icon{
+    margin-right: 10px;
+    margin-left: -10px;
+  }
+
+  .ion-header-background-color {
+  --background: rgb(199, 228, 74);
+}

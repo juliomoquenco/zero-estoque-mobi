@@ -25,3 +25,26 @@
 #container a {
   text-decoration: none;
 }
+
+ion-button{
+  width: 90%;
+  height: 70px;
+  font-size: 16pt;
+  --background: linear-gradient(180deg, rgba(82,82,89,1) 0%, rgba(187,197,199,1) 100%);
+  --border-radius:10px;
+}
+ion-label{
+  text-shadow: 1px 1px 1px #000;
+}
+ion-icon{
+  margin-right: 10px;
+  margin-left: -10px;
+}
+
+.ion-header-background-color {
+  --background: rgb(199, 228, 74);
+}
+
+ion-content {
+  --background: #fff url('../../assets/img/fundo.jpg') no-repeat center center / cover !important;
+}

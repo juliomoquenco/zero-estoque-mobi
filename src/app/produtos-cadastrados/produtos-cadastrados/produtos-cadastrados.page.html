@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="ion-header-background-color">
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -7,39 +7,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>   
+<ion-content> 
 
-    <div *ngFor="let produto of produtos" style="padding:5px;">
+    <div id="main">
+        <div *ngFor="let produto of produtos" style="padding:5px;background-color: #fff;">
 
-        <div>
-            <ion-slides pager="true" [options]="slideOpts">
-                <ion-slide *ngFor="let imagem of produto.imagens">
-                    <img [src]="imagem.nome" />
-                </ion-slide>
-            </ion-slides>
-        </div>
-
-        <div (click)="openFormOferta(produto)">
-            <div style="font-size: 14pt; font-weight: bold;">
-                {{ produto.nome.toUpperCase() }}
+            <div>
+                <ion-slides pager="true" [options]="slideOpts">
+                    <ion-slide *ngFor="let imagem of produto.imagens">
+                        <img [src]="imagem.nome" />
+                    </ion-slide>
+                </ion-slides>
             </div>
 
-            <p style="font-size: 10pt;">
-                {{ produto.descricao.substr(0,100)+"..." }}
-                <br/> Preço: <b>R$ {{ produto.preco.toFixed(2).toString().replace(".",",") }}</b>
-            </p>
+            <div (click)="openFormOferta(produto)">
+                <div style="font-size: 14pt; font-weight: bold;">
+                    {{ produto.nome.toUpperCase() }}
+                </div>
+
+                <p style="font-size: 10pt;">
+                    {{ produto.descricao.substr(0,100)+"..." }}
+                    <br/> Preço: <b>R$ {{ produto.preco.toFixed(2).toString().replace(".",",") }}</b>
+                </p>
+            </div>
+
+            <div *ngIf="produto.favorito_id == 0">
+                <ion-button color="primary" (click)="defineFavorito(produto.id)">
+                    <ion-icon name="star-outline"></ion-icon>
+                    <ion-label>Definir Favorito</ion-label>
+                </ion-button>
+            </div>
+
+            <div *ngIf="produto.favorito_id > 0">
+                <ion-button color="danger" (click)="removeFavorito(produto.id)">
+                    <ion-icon name="close-circle-outline"></ion-icon>
+                    <ion-label>Remover Favorito</ion-label>
+                </ion-button>
+            </div>
+
+            <hr style="background-color:#000;"/>
+
         </div>
-
-        <div *ngIf="produto.favorito_id == 0">
-            <ion-button (click)="defineFavorito(produto.id)">Definir Favorito</ion-button>
-        </div>
-
-        <div *ngIf="produto.favorito_id > 0">
-            <ion-button (click)="removeFavorito(produto.id)">Remover Favorito</ion-button>
-        </div>
-
-        <hr />
-
     </div>
 
 </ion-content>

@@ -25,7 +25,8 @@ export class ProdutosCadastradosPage implements OnInit {
     private alertCtrl: AlertController,
     private menu: MenuController
   ) 
-  { 
+  {
+    this.menu.enable(true);
     this.loadingFavoritos();
   }
   
@@ -74,6 +75,7 @@ export class ProdutosCadastradosPage implements OnInit {
       this.mensagem("Aviso","Definido como Favorito!")
       .then(()=>
       {
+        this.produtos = [];
         this.loadingFavoritos();
       });
     });
@@ -89,6 +91,7 @@ export class ProdutosCadastradosPage implements OnInit {
       this.mensagem("Aviso","Removido como Favorito!")
       .then(()=>
       {
+        this.produtos = [];
         this.loadingFavoritos();
       });
     });
@@ -127,8 +130,10 @@ export class ProdutosCadastradosPage implements OnInit {
     this.router.navigate(["/"+pagina]);
   }
 
-  ngOnInit() {
-
+  ngOnInit() 
+  {
+    this.produtos = [];
+    this.loadingFavoritos();
   }
 
 }

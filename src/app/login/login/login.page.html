@@ -1,27 +1,29 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="ion-header-background-color">
     <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <label stacked>Login: </label>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="txt_login"></ion-input>
-  </ion-item>
+  <div id="main">
+    <ion-item>
+      <label stacked>Login: </label>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="txt_login"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <label stacked>Senha: </label>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="txt_senha"></ion-input>
-  </ion-item>
+    <ion-item>
+      <label stacked>Senha: </label>
+    </ion-item>
+    <ion-item>
+      <ion-input [(ngModel)]="txt_senha" type="password"></ion-input>
+    </ion-item>
 
 
-  <ion-item>
-    <ion-button (click)="logar()">Login</ion-button>
-  </ion-item>
+    <ion-item>
+      <ion-button color="success" (click)="logar()">Entrar</ion-button>
+    </ion-item>
+  </div>
 
 </ion-content>

@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
+    <ion-toolbar class="ion-header-background-color">
         <ion-title>
             Zer0 Estoque
         </ion-title>
@@ -9,8 +9,19 @@
 <ion-content [fullscreen]="true">
 
     <div id="container">
-        <ion-button (click)="open('login');">Entrar</ion-button>
+        <ion-button (click)="open('login');" 
+        style="
+        background: linear-gradient(180deg, rgba(82,82,89,1) 0%, rgba(187,197,199,1) 100%);
+        text-shadow: 1px 1px 1px #000;
+        border-radius:10px;
+        ">
+            <ion-icon name="log-in-outline"></ion-icon>
+            <ion-label>Entrar</ion-label>
+        </ion-button>
         <br />
-        <ion-button (click)="open('registrar');">Cadastrar</ion-button>
+        <ion-button (click)="open('registrar');"  class="btn-cadastrar">
+            <ion-icon name="people-outline"></ion-icon>
+            <ion-label>Cadastrar</ion-label>
+        </ion-button>
     </div>
 </ion-content>

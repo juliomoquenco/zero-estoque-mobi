@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="ion-header-background-color">
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -9,34 +9,38 @@
 
 <ion-content>
 
-  <div>
-    <ion-slides pager="true" [options]="slideOpts">
-      <ion-slide *ngFor="let imagem of produto.imagens">
-        <img [src]="imagem.nome"/>
-      </ion-slide>
-    </ion-slides>
-  </div>
+  <div id="main">
+    <div>
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide *ngFor="let imagem of produto.imagens">
+          <img [src]="imagem.nome"/>
+        </ion-slide>
+      </ion-slides>
+    </div>
 
-  <div>
-    {{ this.produto.descricao }}
-  </div>
+    <div>
+      {{ this.produto.descricao }}
+    </div>
 
-  <div>
-    Preço R$ {{ this.produto.preco.toFixed(2).toString().replace(".",",") }}
-  </div>
+    <div>
+      Preço R$ {{ this.produto.preco.toFixed(2).toString().replace(".",",") }}
+    </div>
 
-  <hr />
+    <hr />
 
-  <div>
-    Valor da Oferta
-  </div>
+    <div>
+      Valor da Oferta
+    </div>
 
-  <div>
-    <input [(ngModel)]="valor_oferta" type="text"/>
-  </div>
+    <div>
+      <input [(ngModel)]="valor_oferta" type="text"/>
+    </div>
 
-  <div>
-    <button (click)="mandarOferta()">Mandar Oferta</button>
+    <br/>
+    
+    <div>
+      <ion-button color="success" (click)="mandarOferta()">Mandar Oferta</ion-button>
+    </div>
   </div>
 
 </ion-content>
