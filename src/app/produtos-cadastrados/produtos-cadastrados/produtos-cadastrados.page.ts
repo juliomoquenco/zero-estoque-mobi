@@ -10,7 +10,8 @@ import { ProdutosCadastradosService } from '../produtos-cadastrados.service';
   templateUrl: './produtos-cadastrados.page.html',
   styleUrls: ['./produtos-cadastrados.page.scss'],
 })
-export class ProdutosCadastradosPage implements OnInit {
+export class ProdutosCadastradosPage implements OnInit 
+{
 
   usuario: any;
   produtos: any = [];
@@ -131,6 +132,12 @@ export class ProdutosCadastradosPage implements OnInit {
   }
 
   ngOnInit() 
+  {
+    this.produtos = [];
+    this.loadingFavoritos();
+  }
+
+  ionViewWillEnter()
   {
     this.produtos = [];
     this.loadingFavoritos();
