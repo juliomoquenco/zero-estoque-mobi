@@ -43,6 +43,10 @@ export class RegistrarPage implements OnInit {
 
   salvar()
   {
+    this.modelo.regra = "Usuario";
+    this.modelo.cnpj = "";
+    console.log(this.modelo);
+
     this.usuarioDao.insertUsuarioApi(this.modelo)
     .then((resultado:any)=>
     {

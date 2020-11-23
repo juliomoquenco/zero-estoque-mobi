@@ -33,7 +33,9 @@
     </div>
 
     <div>
-      <input [(ngModel)]="valor_oferta" type="text"/>
+      <form [formGroup]="formulario">
+        <input [(ngModel)]="valor_oferta" type="text" name="valor_oferta" formControlName="valor_oferta" [brmasker]="{money:true, decimal:2}"/>
+      </form>
     </div>
 
     <br/>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HTTP } from '@ionic-native/http/ngx';
 import { Injectable } from '@angular/core';
 import { CurrentServerService } from '../current-server/current-server.service';
 
@@ -9,7 +9,7 @@ export class FormOfertaService
 {
   constructor
   (
-    private httpPost: HttpClient,
+    private http: HTTP,
     private currentServer: CurrentServerService
   ) 
   {
@@ -21,16 +21,19 @@ export class FormOfertaService
     return new Promise((resolve,reject)=>
     {
       let url = this.currentServer.getServer()+"/setOferta";
-      let postData = new FormData();
-
-      postData.append('usuario_id', modelo.usuario_id);
-      postData.append('produto_id', modelo.produto_id);
-      postData.append('valor_oferta', modelo.valor_oferta);
-
-      this.httpPost.post(url, postData)
-      .subscribe((data)=>
+      this.http.get(
+        url+"?usuario_id="+modelo.usuario_id.toString()+"&produto_id="+modelo.produto_id.toString()+"&valor_oferta="+modelo.valor_oferta
+        ,
+        {},
+        {})
+      .then((data)=>
       {
-        resolve(data);
+        resolve(true);
+      })
+      .catch((data)=>
+      {
+        console.log(data);
+        reject();
       });
     });
 

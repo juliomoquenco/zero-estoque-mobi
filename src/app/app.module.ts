@@ -16,6 +16,9 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { BrMaskerModule } from 'br-mask';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule(
   {
   declarations: [AppComponent],
@@ -24,6 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
   [
     BrowserModule, 
     HttpClientModule,
+
+    FormsModule,
+    ReactiveFormsModule,
+    BrMaskerModule,
+
     IonicModule.forRoot(), 
     IonicStorageModule.forRoot(),
     AppRoutingModule
