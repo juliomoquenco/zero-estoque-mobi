@@ -5,6 +5,8 @@ import { UsuarioService } from 'src/app/usuario/usuario.service';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'app-registrar',
   templateUrl: './registrar.page.html',
@@ -16,9 +18,12 @@ export class RegistrarPage implements OnInit {
   usuarios: any = [];
   promises: any = [];
 
+  private formulario : FormGroup;
+
   constructor(
     private storage: Storage,
     private router: Router,
+    private formBuilder: FormBuilder,
     private usuarioDao: UsuarioService,
     private alertCtrl: AlertController,
     private databaseDao: DatabaseService
@@ -35,6 +40,11 @@ export class RegistrarPage implements OnInit {
         regra: "Usuario",
         sexo: ""
       });
+
+      this.formulario = this.formBuilder.group(
+        {
+          cpf: ['', Validators.required],
+        });
   }
 
   ngOnInit()

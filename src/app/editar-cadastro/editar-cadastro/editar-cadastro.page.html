@@ -32,7 +32,9 @@
 
     <div>Cpf: </div>
     <div>
-      <ion-input [(ngModel)]="modelo.cpf"></ion-input>
+      <form [formGroup]="formulario">
+        <input [(ngModel)]="modelo.cpf" type="text" name="cpf" formControlName="cpf" [brmasker]="{mask:'000.000.000-00', len:14}"/>
+      </form>
     </div>
 
     <div>Sexo: </div>

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -8,10 +7,16 @@ import { EditarCadastroPageRoutingModule } from './editar-cadastro-routing.modul
 
 import { EditarCadastroPage } from './editar-cadastro.page';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrMaskerModule } from 'br-mask';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    BrMaskerModule,
+    ReactiveFormsModule,
     IonicModule,
     EditarCadastroPageRoutingModule
   ],

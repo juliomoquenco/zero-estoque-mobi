@@ -4,6 +4,8 @@ import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { UsuarioService } from 'src/app/usuario/usuario.service';
 
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+
 @Component({
   selector: 'app-editar-cadastro',
   templateUrl: './editar-cadastro.page.html',
@@ -12,9 +14,12 @@ import { UsuarioService } from 'src/app/usuario/usuario.service';
 export class EditarCadastroPage implements OnInit {
   modelo:any;
 
+  private formulario : FormGroup;
+
   constructor(
     private storage: Storage,
     private usuarioDao: UsuarioService,
+    private formBuilder: FormBuilder,
     private alertCtrl: AlertController,
     private router: Router
   ) 
@@ -47,6 +52,12 @@ export class EditarCadastroPage implements OnInit {
         regra: usuario.regra
       };
     });
+
+    this.formulario = this.formBuilder.group(
+    {
+      cpf: ['', Validators.required],
+    });
+
   }
 
   ngOnInit() {
