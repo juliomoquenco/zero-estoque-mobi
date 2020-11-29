@@ -65,7 +65,7 @@ export class FormOfertaPage implements OnInit {
       valor_oferta: this.valor_oferta
     }).then((retorno)=>
     {
-      this.mensagem("Aviso","Oferta mandada com sucesso!");
+      this.mensagem("Aviso","Oferta enviada com sucesso!");
     });
   }
 
